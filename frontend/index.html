@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue</title>
+</head>
+<body>
+  <div id="app">
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <form action="#" @submit.prevent="modalProcessing" id="login_form">
+          <label for="username">Type your username</label>
+          <input type="text" name="username" v-model="user.name">
+          <button id="close">Login</button>
+        </form>        
+      </div>
+    </div>
+    <div class="flexbox">
+      <ul id="messages">
+        <h1 v-if="choosedUser.name">Chat with {{choosedUser.name}}</h1>
+        <li class="message" v-for="message in messages[choosedUser.name]">{{message}}</li>
+      </ul>
+      <ul id="online">
+        <h1>Users online:</h1>
+        <li class="user" v-for="u in users" v-on:click="chooseUser(u.name)">
+          <span v-if="choosedUser.name && choosedUser.name == u.name">&#9773;</span>
+          {{u.name}}
+        </li>
+      </ul>
+    </div>
+    <form action="#" @submit.prevent="messageProcessing" id="message_form">
+      <input id="m" autocomplete="off" v-model="user.message" /><button>Send</button>
+    </form>
+  </div>
+  <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+  <script type="text/javascript" src="bundle-front.js"></script>
+</body>
+</html>
